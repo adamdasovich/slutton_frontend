@@ -6,7 +6,7 @@ const CardContainer = ({products}) => {
         <h4 style={{textAlign: 'center'}}>Products</h4>
         <div className='container px-4 px-lg-5 mt-5'>
             <div className='row justify-content-center'>
-              {products.map(product => <HomeCard key={products.id} product={product}/>)}
+              {products.map(product => <HomeCard key={product.id} product={product}/>)}
             </div>
         </div>
     </section>
