@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <nav className={`navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 ${styles.stickyNavbar}`}>
     <div className="container">
-        <Link className="navbar-brand fw-bold text-uppercase" to="/">Slutton</Link>
+        <Link className="navbar-brand fw-bold text-uppercase" style={{color: '#AA336A'}} to="/">Slutton</Link>
         <button
             className="navbar-toggler"
             type='button'
