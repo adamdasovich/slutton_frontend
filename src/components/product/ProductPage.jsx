@@ -5,12 +5,43 @@ import { useParams } from 'react-router-dom'
 import api from '../../api'
 import { BASE_URL } from '../../api'
 
-const ProductPage = () => {
+const ProductPage = ({setNumberCartItems}) => {
   
   const { slug } = useParams()
   const [product, setProduct] = useState({})
   const [similarProducts, setSimilarProducts] = useState([])
   const [loading, setLoading] = useState(false)
+  const [inCart, setInCart] = useState(false)
+
+  const cart_code = localStorage.getItem('cart_code')
+
+  useEffect(() => {
+    if(product.id) {
+        console.log(product.id)
+        api.get(`product_in_cart?cart_code=${cart_code}&product_id=${product.id}`)
+        .then(res => {
+        console.log(res.data)
+        setInCart(res.data.product_in_cart)
+        })
+        .catch(err => {
+        console.log(err.message)
+        })
+    }
+    }, [cart_code, product.id])
+
+  const newItem = {cart_code: cart_code, product_id: product.id}
+
+  const add_item = () => {
+    api.post('add_item', newItem)
+    .then(res => {
+        console.log(res.data)
+        setInCart(true)
+        setNumberCartItems(curr => curr + 1)
+    })
+    .catch(err => {
+        console.log(err.message)
+    })
+  }
 
   useEffect(() => {
     setLoading(true)
@@ -56,9 +87,11 @@ const ProductPage = () => {
                             <button
                                 className='btn btn-outline-dark flex-shrink-0'
                                 type='button'
+                                onClick={add_item}
+                                disabled={inCart}
                             >
                                 <i className='bi-cart-fill me-1'></i>
-                                Add to Cart
+                                {inCart ? 'Product added to cart' : "Add to cart"}
                             </button>
                         </div>
                     </div>
