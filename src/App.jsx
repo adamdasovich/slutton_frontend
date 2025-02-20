@@ -7,6 +7,8 @@ import ProductPage from './components/product/ProductPage'
 import api from './api'
 import CartPage from './components/cart/CartPage'
 import CheckoutPage from './components/checkout/CheckoutPage'
+import LoginPage from './components/user/LoginPage'
+import ProtectedRoute from './components/ui/ProtectedRoute'
 
 const App = () => {
 
@@ -28,6 +30,11 @@ const App = () => {
      }
     }, [cart_code])
 
+  const LoggingLoginPage = () => {
+    console.log('Rendering LoginPage');
+    return <LoginPage />;
+  }  
+
   return (
     <BrowserRouter >
       <Routes>
@@ -35,7 +42,9 @@ const App = () => {
         <Route index element={<HomePage />}/>
         <Route path='products/:slug' element={<ProductPage setNumberCartItems={setNumberCartItems}/>} />
         <Route path='cart' element={<CartPage setNumberCartItems={setNumberCartItems} />} />
-        <Route path='checkout' element={<CheckoutPage />} />
+        <Route path='checkout' element={<ProtectedRoute key={Date.now()}><CheckoutPage /></ProtectedRoute>} />
+        <Route path='login' element={<LoginPage />} />
+        <Route path='login' element={<LoggingLoginPage />} />
         <Route path='*' element={<NotFoundPage />} />
         </Route>
       </Routes>

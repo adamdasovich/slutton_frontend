@@ -15,11 +15,9 @@ const useCartData = () => {
       setLoading(true)
       api.get(`get_cart?cart_code=${cart_code}`)
       .then(res => {
-        console.log(typeof res.data.sub_total)
         setCartItems(res.data.items)
         setCartTotal(Number(res.data.sub_total) || 0)
         setLoading(false)
-        console.log(typeof cartTotal)
       })
       .catch(err => {
         setLoading(false)
