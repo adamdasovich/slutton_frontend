@@ -6,6 +6,7 @@ import NotFoundPage from './components/ui/NotFoundPage'
 import ProductPage from './components/product/ProductPage'
 import api from './api'
 import CartPage from './components/cart/CartPage'
+import CheckoutPage from './components/checkout/CheckoutPage'
 
 const App = () => {
 
@@ -34,6 +35,7 @@ const App = () => {
         <Route index element={<HomePage />}/>
         <Route path='products/:slug' element={<ProductPage setNumberCartItems={setNumberCartItems}/>} />
         <Route path='cart' element={<CartPage setNumberCartItems={setNumberCartItems} />} />
+        <Route path='checkout' element={<CheckoutPage />} />
         <Route path='*' element={<NotFoundPage />} />
         </Route>
       </Routes>
