@@ -9,6 +9,7 @@ import CartPage from './components/cart/CartPage'
 import CheckoutPage from './components/checkout/CheckoutPage'
 import LoginPage from './components/user/LoginPage'
 import ProtectedRoute from './components/ui/ProtectedRoute'
+import { AuthProvider } from './context/AuthContext'
 
 const App = () => {
 
@@ -36,6 +37,7 @@ const App = () => {
   }  
 
   return (
+    <AuthProvider>
     <BrowserRouter >
       <Routes>
         <Route path='/' element={<MainLayout  numCartItems={numCartItems}/>}>
@@ -49,6 +51,7 @@ const App = () => {
         </Route>
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
   )
 }
 

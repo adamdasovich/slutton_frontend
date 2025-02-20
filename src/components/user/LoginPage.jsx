@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import './LoginPage.css'
 import api from '../../api'
 import Error from '../ui/Error'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext'
+
 
 const LoginPage = () => {
+
+  const {setIsAuthenticated, get_username} = useContext(AuthContext) 
 
   const location = useLocation()
   const navigate = useNavigate()  
@@ -27,9 +31,11 @@ const LoginPage = () => {
         setUsername('')
         setPassword('')
         setLoading(false)
+        setIsAuthenticated(true)
+        get_username()
         setError('')
 
-        const from = location.state?.from?.pathname || '/checkout';
+        const from = location.state?.from?.pathname || '/';
         console.log('Attempting navigation to:', from);
         navigate(from, { replace: true });
 
