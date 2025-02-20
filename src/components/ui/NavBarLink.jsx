@@ -4,7 +4,12 @@ import { useContext } from 'react'
 
 const NavBarLink = () => {
 
-  const {isAuthenticated, username} = useContext(AuthContext)
+  const {isAuthenticated, username, setIsAuthenticated} = useContext(AuthContext)
+
+  const logout = () => {
+    localStorage.removeItem('access')
+    setIsAuthenticated(false)
+  }
 
   return (
     <ul className='navbar-nav ms-auto mb-2 mb-lg-0'>
@@ -17,12 +22,12 @@ const NavBarLink = () => {
                 }
                 end
             >
-                {`Hello, ${username}`}
+                {username}
             </NavLink>
         </li> 
-        <li className='nav-item'>
+        <li className='nav-item' onClick={logout}>
             <NavLink
-                to='/logout'
+                to='/'
                 className={({isActive}) => 
                     isActive ? 'nav-link active fw-semibold' : 'nav-link fw-semibold'
                 }
