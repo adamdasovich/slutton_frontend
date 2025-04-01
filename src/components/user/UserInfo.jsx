@@ -1,7 +1,7 @@
 
 import styles from './UserInfo.module.css'
 
-const UserInfo = () => {
+const UserInfo = ({userInfo}) => {
   return (
     <div className='row mb-4'>
         <div className={`col-md-3 py-3 card ${styles.textCenter}`}>
@@ -10,7 +10,7 @@ const UserInfo = () => {
                 alt='User Profile'
                 className={`img-fluid rounded-circle mb-3 mx-auto ${styles.profileImage}`} 
             />
-            <h4>John Doe</h4>
+            <h4>{userInfo.username}</h4>
             <p className='text-muted'>adam@jj.com</p>
             <button className='btn mt-2' style={{backgroundColor: '#6050DC', color: 'white'}}>Edit</button>
         </div>
@@ -23,21 +23,21 @@ const UserInfo = () => {
                     <div className='row'>
                         <div className='col-md-6'>
                             <p>
-                                <strong>Full Name:</strong> Adddam
+                                <strong>Full Name:</strong> {userInfo.first_name} {userInfo.last_name}
                             </p>
                             <p>
-                                <strong>Email:</strong> Adddam
+                                <strong>Email:</strong> {userInfo.email}
                             </p>
                             <p>
-                                <strong>Phone:</strong> Adddam
+                                <strong>Phone:</strong> {userInfo.phone}
                             </p>
                         </div>
                         <div className='col-md-6'>
                             <p>
-                                <strong>City:</strong> Adddam
+                                <strong>City:</strong> {userInfo.city}
                             </p>
                             <p>
-                                <strong>Country:</strong> Adddam
+                                <strong>Country:</strong> {userInfo.country}
                             </p>
                             <p>
                                 <strong>Member Since:</strong> Adddam

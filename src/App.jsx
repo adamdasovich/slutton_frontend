@@ -11,6 +11,8 @@ import LoginPage from './components/user/LoginPage'
 import ProtectedRoute from './components/ui/ProtectedRoute'
 import { AuthProvider } from './context/AuthContext'
 import UserProfilePage from './components/user/UserProfilePage'
+import RegistrationPage from './components/user/RegistrationPage'
+import PaymentPage from './components/payment/PaymentPage'
 
 const App = () => {
 
@@ -49,6 +51,8 @@ const App = () => {
         <Route path='login' element={<LoginPage />} />
         <Route path='login' element={<LoggingLoginPage />} />
         <Route path='profile' element={<UserProfilePage />}/>
+        <Route path='register' element={<RegistrationPage />} />
+        <Route path='payment' element={<PaymentPage setNumberCartItems={setNumberCartItems}/>} />
         <Route path='*' element={<NotFoundPage />} />
 
         </Route>

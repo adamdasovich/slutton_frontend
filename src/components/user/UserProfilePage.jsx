@@ -2,10 +2,12 @@ import UserInfo from './UserInfo'
 import OrderHistoryContainer from './OrderHistoryContainer'
 import { useState, useEffect } from 'react'
 import api from '../../api'
+import Spinner from '../ui/Spinner'
 
 const UserProfilePage = () => {
 
   const [userInfo, setUserInfo] = useState({})
+  const [orderitems, setOrderitems] = useState([])
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -14,6 +16,7 @@ const UserProfilePage = () => {
     .then(res => {
       console.log(res.data)
       setUserInfo(res.data)
+      setOrderitems(res.data.items)
       setLoading(false)
     })
     .catch(err => {
@@ -21,13 +24,18 @@ const UserProfilePage = () => {
       setLoading(false)
     })
   }, [])
+  if (loading){
+    return <Spinner loading={loading}/>
+  }
+    
+
 
   return (
     <div className='container my-5'>
 
-        <UserInfo />
+        <UserInfo userInfo={userInfo}/>
 
-        <OrderHistoryContainer />
+        <OrderHistoryContainer orderitems={orderitems}/>
 
     </div>
   )

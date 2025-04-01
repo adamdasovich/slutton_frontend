@@ -1,7 +1,7 @@
 import OrderHistoryItem from "./OrderHistoryItem"
 
 
-const OrderHistoryContainer = () => {
+const OrderHistoryContainer = ({orderitems}) => {
   return (
     <div className='row' style={{height: '300px', overflow: 'auto'}}>
         <div className='col-md-12'>
@@ -9,7 +9,10 @@ const OrderHistoryContainer = () => {
                 <div className='card-header' style={{backgroundColor: '#6050DC', color: 'white'}}>
                     <h5>Order History</h5>
                 </div>
-                <OrderHistoryItem />
+                {orderitems.map(item => (
+                  <OrderHistoryItem key={item.id} item={item}/>
+                ))}
+                
             </div>
         </div>
     </div>

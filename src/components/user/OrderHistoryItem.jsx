@@ -1,28 +1,29 @@
 import styles from './OrderHistoryItem.module.css'
+import { BASE_URL } from '../../api'
 
-const OrderHistoryItem = () => {
+const OrderHistoryItem = ({item}) => {
   return (
     <div className='card-body'>
         <div className={`order-item mb ${styles.orderItem}`}>
             <div className='row'>
                 <div className='col-md-2'>
                     <img 
-                        src='assets/laptop1.jpg'
+                        src={`${BASE_URL}${item.product.image}`}
                         alt='Order Item'
                         className='img-fluid'
                         style={{ borderRadius: '5px'}}
                     />
                 </div>
                 <div className='col-md-6'>
-                    <h6>Product Name</h6>
-                    <p>Order Date: Blah</p>
-                    <p>Order Id: eee</p>
+                    <h6>{item.product.name}</h6>
+                    <p>{item.order_date}</p>
+                    <p>{item.order_id}</p>
                 </div>
                 <div className='col-md-2 text-center'>
-                    <h6 className='text-muted'>Quantity: 2</h6>
+                    <h6 className='text-muted'>Quantity: {item.quantity}</h6>
                 </div>
                 <div className='col-md-2 text-center'>
-                    <h6 className='text-muted'>$23.98</h6>
+                    <h6 className='text-muted'>{`$${item.product.price}`}</h6>
                 </div>
             </div>
         </div>
